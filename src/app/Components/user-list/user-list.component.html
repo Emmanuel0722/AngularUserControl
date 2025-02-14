@@ -1,0 +1,113 @@
+<div class="containerList d-flex justify-content-center mt-5" style="width: 100%;" >
+  <div class="card col-5 w-100">
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+      <span>User List</span>
+
+      <!-- <div class="col-6 d-flex" >
+        <input type="text" class="form-control" placeholder="Search by Name" >
+        <button class="btn btn-outline-danger" style="margin-left: 5px;" >Search</button>
+      </div> -->
+
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-bordered table-hover m-0" >
+        <thead>
+          <tr>
+            <th class="bg-danger text-white text-center">Code</th>
+            <th class="bg-danger text-white text-center">User</th>
+            <th class="bg-danger text-white text-center">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of record" >
+            <td class="text-center" >{{item.userId}}</td>
+            <td>{{item.username}}</td>
+            <td class="text-center" >
+              <button type="button" class="btn btn-outline-primary col-5" (click)="updateData(item)" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+              <!-- <button class="btn btn-outline-warning" (click)="deleteData(item.userId)" style="margin-left: 5px;" >Delete</button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex justify-content-around">
+
+      <nav>
+        <ul class='pagination' >
+
+          <li class='page-item'>
+            <a class='page-link' href="#" (click)="prePage()" >Prev</a>
+          </li>
+
+          <li class='page-item'>
+            <a class='page-link' href="#" (click)=pPage() ><</a>
+          </li>
+
+          <li *ngFor="let item of numbers.slice(pPPage, nPPage)" class='page-item'>
+            <a href="#" class='page-link' (click)="changeCpage(item)" >{{ item }}</a>
+          </li>
+
+          <li class='page-item'>
+            <a class='page-link' href="#" (click)="nPage()" >></a>
+          </li>
+
+          <li class='page-item'>
+            <a href="#" class='page-link' (click)="nextPage()" >Next</a>
+          </li>
+
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-bs-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="text-center" >
+
+          <div class="form-group mb-3">
+            <input type="text" class="form-control" [(ngModel)]="UserUpdate.userId" value="{{ UserUpdate.userId}}" placeholder="Username" name="username" required readonly />
+          </div>
+          
+          <div class="form-group mb-3">
+            <input type="text" class="form-control" [(ngModel)]="UserUpdate.username" value="{{ UserUpdate.username }}" placeholder="Username" name="username" required />
+          </div>
+    
+          <div class="form-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="UserUpdate.passControl" value="{{ UserUpdate.passControl }}" name="passControl" required />
+          </div>
+          
+          <div class="form-group mb-3">
+            <input type="email" class="form-control" [(ngModel)]="UserUpdate.email" placeholder="Email" value="{{ UserUpdate.email }}" name="email" required />
+          </div>
+    
+          <div class="form-group mb-3" name="stateUser" >
+            <select class="form-control" [(ngModel)]="UserUpdate.stateUser"  value="{{ UserUpdate.stateUser }}" required >
+              <option value="" >State</option>
+              <option value="Activo" >Activo</option>
+              <option value="Inactivo" >Inactivo</option>
+            </select>
+          </div>
+    
+          <input type="submit" class="btn btn-outline-info col-9 mb-2" (click)="Update()" value="Update">
+          <br>
+          <h6 class="text-danger" style="height: 10px;" > {{ this.Mess }} </h6>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
