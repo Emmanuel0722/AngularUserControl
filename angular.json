@@ -96,7 +96,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "buildTarget": "vanangulartest:build:production",
+            "dir": "dist/vanangulartest",
+            "nojekyll": true
+          }
         }
       }
     }

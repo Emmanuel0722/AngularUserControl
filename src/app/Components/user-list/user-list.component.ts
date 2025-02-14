@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [NgFor, RouterOutlet, FormsModule],
+  imports: [NgFor, FormsModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
   
